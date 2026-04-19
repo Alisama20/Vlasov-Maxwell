@@ -7,6 +7,51 @@ High-order numerical simulation of collisionless plasma dynamics via **semi-Lagr
 
 ---
 
+## Repository Structure
+
+```
+.
+├── scripts/
+│   ├── 1D1V.py              # Semi-Lagrangian Vlasov-Poisson (electrostatic two-stream)
+│   ├── 1D2V.py              # Semi-Lagrangian 1D2V (electromagnetic Weibel instability)
+│   ├── 1D1V_PIC.py          # Particle-in-Cell Monte Carlo (two-stream)
+│   └── translate_memoria.py # Translation utility (Spanish → English)
+├── figures/                 # Output figures
+│   ├── weibel_campos.png    # Weibel: field evolution
+│   ├── weibel_fpx.png       # Weibel: marginal f(x,px)
+│   ├── weibel_fpy.png       # Weibel: marginal f(x,py)
+│   ├── twostream_campos.png # PIC: field evolution
+│   └── twostream_fase.png   # PIC: phase space
+├── latex/
+│   ├── memroria.tex         # Spanish thesis (source)
+│   ├── memoria_en.tex       # English thesis (source)
+│   ├── memoria_en.pdf       # English thesis (compiled)
+│   ├── memroria.pdf         # Spanish thesis (compiled)
+│   ├── bibliografia.bib     # Bibliography
+│   ├── escudoUGRmonocromo.png # UGR logo
+│   └── *.png                # Thesis figures
+├── MemoryEN.pdf             # English thesis (copy in root)
+├── MemoriaES.pdf            # Spanish thesis (copy in root)
+├── README.md                # This file
+├── LICENSE                  # MIT License
+└── .gitignore               # Git configuration
+```
+
+---
+
+## Report
+
+The full academic report is available in two languages:
+
+| File | Description |
+|------|-------------|
+| [MemoryEN.pdf](MemoryEN.pdf) | English version — semi-Lagrangian scheme, PIC method, Weibel and two-stream instability results |
+| [MemoriaES.pdf](MemoriaES.pdf) | Spanish version (original) |
+
+The LaTeX sources are in the [](latex/) folder together with the bibliography.
+
+---
+
 ## Physical Model
 
 The system is governed by the **Vlasov-Maxwell equations**
@@ -36,9 +81,7 @@ $$
 
 The system captures **electromagnetic wave coupling** absent in purely electrostatic models,
 enabling study of instabilities like Weibel (magnetic) and two-stream (electrostatic).
-
 ---
-
 ## Methods
 
 ### Semi-Lagrangian Scheme — 1D1V & 1D2V
@@ -83,9 +126,7 @@ Each time step:
 **Disadvantages:**
 - Statistical noise (Monte Carlo error)
 - More particles needed for accuracy than fine grid
-
 ---
-
 ## Results
 
 ### Weibel Instability — 1D2V Semi-Lagrangian
@@ -117,9 +158,7 @@ the temperature-driving direction $(p_y)$ shows stronger modulation than $(p_x)$
 </p>
 
 **Key observation:** Electromagnetic mode structure emerges from initial seed, saturating via particle trapping.
-
 ---
-
 ### Two-Stream Instability — 1D1V PIC Monte Carlo
 
 **Setup:** Two counter-propagating Maxwellian beams ($v_0 = \pm 2$) with small spatial density perturbation.
@@ -146,54 +185,7 @@ self-consistent electric field.</em>
 
 **Key observation:** PIC captures the transition from exponential growth (linear regime) 
 to vortex saturation (nonlinear phase) without grid refinement in velocity space.
-
 ---
-
-## Report
-
-The full academic report is available in two languages:
-
-| File | Description |
-|------|-------------|
-| [MemoryEN.pdf](MemoryEN.pdf) | English version — theory, numerics, convergence analysis, results |
-| [MemoriaES.pdf](MemoriaES.pdf) | Spanish version (original) — complete derivations and discussion |
-
-The LaTeX sources, bibliography, and figures are in the [`latex/`](latex/) folder.
-
----
-
-## Repository Structure
-
-```
-.
-├── scripts/
-│   ├── 1D1V.py              # Semi-Lagrangian Vlasov-Poisson (electrostatic two-stream)
-│   ├── 1D2V.py              # Semi-Lagrangian 1D2V (electromagnetic Weibel instability)
-│   ├── 1D1V_PIC.py          # Particle-in-Cell Monte Carlo (two-stream)
-│   └── translate_memoria.py # Translation utility (Spanish → English)
-├── figures/                 # Output figures
-│   ├── weibel_campos.png    # Weibel: field evolution
-│   ├── weibel_fpx.png       # Weibel: marginal f(x,px)
-│   ├── weibel_fpy.png       # Weibel: marginal f(x,py)
-│   ├── twostream_campos.png # PIC: field evolution
-│   └── twostream_fase.png   # PIC: phase space
-├── latex/
-│   ├── memroria.tex         # Spanish thesis (source)
-│   ├── memoria_en.tex       # English thesis (source)
-│   ├── memoria_en.pdf       # English thesis (compiled)
-│   ├── memroria.pdf         # Spanish thesis (compiled)
-│   ├── bibliografia.bib     # Bibliography
-│   ├── escudoUGRmonocromo.png # UGR logo
-│   └── *.png                # Thesis figures
-├── MemoryEN.pdf             # English thesis (copy in root)
-├── MemoriaES.pdf            # Spanish thesis (copy in root)
-├── README.md                # This file
-├── LICENSE                  # MIT License
-└── .gitignore               # Git configuration
-```
-
----
-
 ## Requirements
 
 ```
@@ -207,9 +199,7 @@ pip install numpy numba matplotlib tqdm
 ```
 
 All scripts are tested on Python 3.8+.
-
 ---
-
 ## Usage
 
 Run scripts from the repository root to ensure relative paths to `figures/` work correctly:
@@ -251,9 +241,7 @@ Each script generates PNG figures automatically in `figures/`.
 | `nx` | 128 | Number of spatial grid cells |
 | `dt` | 0.05 | Time step |
 | `tmax` | 40 | Simulation duration |
-
 ---
-
 ## Physical Insights
 
 ### Why Two Methods?
